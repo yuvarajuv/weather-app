@@ -1,0 +1,6 @@
+.searchBox input{
+    min-width: 30vw;
+}
+.dropdown-item{
+    white-space: initial;
+}
