@@ -31,8 +31,8 @@ export const Search = ({ setCoordinates, initialValues }) => {
       const data = await getCall(`${MAPBOX_API_URL}/${query}.json?access_token=${MAPBOX_TOKEN}`);
       const list = get(data, 'features', []).map((item) => {
         const placeName = get(item, 'place_name');
-        const latitude = get(item, ['geometry', 'coordinates', '0'], null);
-        const longitude = get(item, ['geometry', 'coordinates', '1'], null);
+        const longitude = get(item, ['center', '0']);
+        const latitude = get(item, ['center', '1']);
         return {
           id: latitude,
           placeName,
@@ -40,6 +40,7 @@ export const Search = ({ setCoordinates, initialValues }) => {
           longitude
         };
       });
+      console.log(list);
       setValues({
         loading: false,
         options: list
